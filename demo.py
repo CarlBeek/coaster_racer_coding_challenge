@@ -109,6 +109,26 @@ def testGraph(inp, out, sess):
 
 
 
+
+#crop video frame so NN is smaller and set range between 1 and 0; and stack-a-bitch!
+def processFrame(observation_n):
+    if observation_n is not None:
+        obs = observation_n[0]['vision']
+        #crop
+        obs = cropFrame(obs)
+        #downscale resolution (not sure about sizing here, was (120,160) when I started but it felt like that was just truncating the colourspace)
+        obs = cv2.resize(obs, (120, 160))
+        #greyscale
+        obs = cv2.cvtColor(obs, cv2.COLOR_BGR2GRAY)
+        #Convert to float
+        obs = obs.astype(np.float32)
+        #scale from 1 to 255
+        obs *= (1.0 / 255.0)
+        #re-shape a bitch
+        obs = np.reshape(obs, [120, 160])
+    return obs
+
+
 #crop frame to only flash portion:
 def cropFrame(obs):
 #adds top = 84 and left = 18 to height and width:
