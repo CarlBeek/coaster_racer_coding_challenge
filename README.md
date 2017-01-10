@@ -10,6 +10,7 @@ I won! Somehow, this was the best bot sent in and I won the challenge. Thanks ve
 ##What the Bot sees:
 In order to reduce the size of the learning task, the raw pixels, as recieved from Universe, are downsampled and convereted into black and white.
 These are examples of what the bot sees:
+
 ![alt tag](WhatBotSees.png)
 ![alt tag](WhatBotSees2.png)
 
